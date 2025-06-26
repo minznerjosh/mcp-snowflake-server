@@ -37,6 +37,13 @@ def parse_args():
         nargs="+",
         help="List of tools to exclude",
     )
+    parser.add_argument(
+        "--exclude-json-results",
+        action="store_true",
+        dest="exclude_json_results",
+        default=False,
+        help="Exclude JSON output from results",
+    )
 
     # First, get all the arguments we don't know about
     args, unknown = parser.parse_known_args()
@@ -64,6 +71,7 @@ def parse_args():
         "log_level": args.log_level,
         "prefetch": args.prefetch,
         "exclude_tools": args.exclude_tools,
+        "exclude_json_results": args.exclude_json_results,
     }
 
     return server_args, connection_args
@@ -101,6 +109,7 @@ def main():
             prefetch=server_args["prefetch"],
             log_level=server_args["log_level"],
             exclude_tools=server_args["exclude_tools"],
+            exclude_json_results=server_args["exclude_json_results"],
         )
     )
 
