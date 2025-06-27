@@ -12,7 +12,7 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[logging.StreamHandler()],
 )
-logger = logging.getLogger("mcp_snowflake_server")
+logger = logging.getLogger("mcp_snowflake_server_formation")
 
 
 class SnowflakeDB:

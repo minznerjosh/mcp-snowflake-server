@@ -22,7 +22,7 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[logging.StreamHandler()],
 )
-logger = logging.getLogger("mcp_snowflake_server")
+logger = logging.getLogger("mcp_snowflake_server_formation")
 
 
 
@@ -330,7 +330,7 @@ async def main(
     # Setup logging
     if log_dir:
         os.makedirs(log_dir, exist_ok=True)
-        logger.handlers.append(logging.FileHandler(os.path.join(log_dir, "mcp_snowflake_server.log")))
+        logger.handlers.append(logging.FileHandler(os.path.join(log_dir, "mcp_snowflake_server_formation.log")))
     if log_level:
         logger.setLevel(log_level)
 
@@ -588,7 +588,7 @@ async def main(
             write_stream,
             InitializationOptions(
                 server_name="snowflake",
-                server_version=importlib.metadata.version("mcp_snowflake_server"),
+                server_version=importlib.metadata.version("mcp_snowflake_server_formation"),
                 capabilities=server.get_capabilities(
                     notification_options=NotificationOptions(),
                     experimental_capabilities={},
