@@ -35,6 +35,8 @@ class SnowflakeDB:
             if "warehouse" in self.connection_config:
                 self.session.sql(f"USE WAREHOUSE {self.connection_config['warehouse'].upper()}")
 
+            self.session.use_secondary_roles("ALL")
+
             self.auth_time = time.time()
         except Exception as e:
             raise ValueError(f"Failed to connect to Snowflake database: {e}")
