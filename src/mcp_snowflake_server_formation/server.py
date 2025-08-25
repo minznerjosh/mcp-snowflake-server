@@ -51,7 +51,7 @@ class Tool(BaseModel):
 
 # Tool handlers
 async def handle_list_databases(arguments, db, *_, exclusion_config=None, exclude_json_results=False):
-    query = "SELECT DATABASE_NAME FROM INFORMATION_SCHEMA.DATABASES"
+    query = "SELECT DATABASE_NAME, COMMENT FROM INFORMATION_SCHEMA.DATABASES"
     data, data_id = await db.execute_query(query)
 
     # Filter out excluded databases
@@ -93,7 +93,7 @@ async def handle_list_schemas(arguments, db, *_, exclusion_config=None, exclude_
         raise ValueError("Missing required 'database' parameter")
 
     database = arguments["database"]
-    query = f"SELECT SCHEMA_NAME FROM {database.upper()}.INFORMATION_SCHEMA.SCHEMATA"
+    query = f"SELECT SCHEMA_NAME, COMMENT FROM {database.upper()}.INFORMATION_SCHEMA.SCHEMATA"
     data, data_id = await db.execute_query(query)
 
     # Filter out excluded schemas
